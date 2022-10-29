@@ -39,3 +39,59 @@
 .read-the-docs {
   color: #888;
 }
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 100;
+  src: url('./assets/fonts/silka/silka-light-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 200;
+  src: url('./assets/fonts/silka/silka-thin-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 300;
+  src: url('./assets/fonts/silka/silka-light-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 400;
+  src: url('./assets/fonts/silka/silka-regular-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 500;
+  src: url('./assets/fonts/silka/silka-medium-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 600;
+  src: url('./assets/fonts/silka/silka-semibold-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 700;
+  src: url('./assets/fonts/silka/silka-bold-webfont.ttf') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silka';
+  font-weight: 900;
+  src: url('./assets/fonts/silka/silka-black-webfont.ttf') format('woff');
+  font-display: swap;
+}

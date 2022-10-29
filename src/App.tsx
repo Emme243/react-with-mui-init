@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import './App.css';
+import { TextField, Typography } from '@mui/material';
+import ToggleColorModeButton from './components/molecules/ToggleColorModeButton';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,6 +25,11 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <Typography variant="h1">Thin</Typography>
+
+      <ToggleColorModeButton />
+
+      <TextField size="small" type="text" />
     </div>
   );
 }
