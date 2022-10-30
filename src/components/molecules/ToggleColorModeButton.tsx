@@ -16,12 +16,7 @@ function ToggleColorModeButton() {
   }
 
   return (
-    <ToggleButtonGroup
-      exclusive
-      value={selectedColorMode}
-      onChange={handleToggleColorMode}
-      size="small"
-    >
+    <ToggleButtonGroup exclusive value={selectedColorMode} onChange={handleToggleColorMode}>
       <ToggleButton value="light" aria-label="left aligned">
         <LightModeOutlinedIcon />
       </ToggleButton>

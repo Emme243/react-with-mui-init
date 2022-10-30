@@ -23,18 +23,26 @@ function ColorModeContextProvider({ children }: { children: React.ReactNode }) {
   const [colorMode, setColorMode] = useState<IColorMode>(preferredColorModeBySystem);
   const [selectedColorMode, setSelectedColorMode] = useState<IColorModeSelected>('system');
 
+  function getValidSelectedColorMode(selectedColorMode: IColorModeSelected): IColorModeSelected {
+    return selectedColorMode === 'system' ||
+      selectedColorMode === 'light' ||
+      selectedColorMode === 'dark'
+      ? selectedColorMode
+      : 'system';
+  }
+
   useEffect(() => {
     const selectedColorModeFromLocalStorage = localStorage.getItem(SELECTED_COLOR_MODE_KEY);
-    const selectedColorMode =
-      selectedColorModeFromLocalStorage != null
-        ? (selectedColorModeFromLocalStorage as IColorModeSelected)
-        : 'system';
-    setSelectedColorMode(selectedColorMode);
+    const validSelectedColorMode = getValidSelectedColorMode(
+      selectedColorModeFromLocalStorage as IColorModeSelected,
+    );
+    setSelectedColorMode(validSelectedColorMode);
   }, []);
 
-  function onSelectedColorModeChange(selectedColorMode: IColorModeSelected) {
-    setSelectedColorMode(selectedColorMode);
-    localStorage.setItem(SELECTED_COLOR_MODE_KEY, selectedColorMode);
+  function onSelectedColorModeChange(selectedColorMode: IColorModeSelected): void {
+    const validSelectedColorMode = getValidSelectedColorMode(selectedColorMode);
+    setSelectedColorMode(validSelectedColorMode);
+    localStorage.setItem(SELECTED_COLOR_MODE_KEY, validSelectedColorMode);
   }
 
   useEffect(() => {
