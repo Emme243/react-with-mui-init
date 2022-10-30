@@ -9,8 +9,8 @@ import { useTranslation } from 'react-i18next';
 
 function NotFoundPage() {
   const { t } = useTranslation();
-  const { colorMode } = useContext(ColorModeContext);
-  const notFoundImage = colorMode === 'dark' ? not_found_dark : not_found_light;
+  const { muiColorMode } = useContext(ColorModeContext);
+  const notFoundImage = muiColorMode === 'dark' ? not_found_dark : not_found_light;
 
   return (
     <Container sx={{ paddingY: 4 }}>

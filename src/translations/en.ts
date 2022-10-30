@@ -7,4 +7,22 @@ export default {
       go_home: 'Go Home',
     },
   },
+  components: {
+    molecules: {
+      language_switcher: {
+        language: 'Language',
+      },
+      toggle_color_mode_button: {
+        theme: 'Theme',
+        light: 'Light',
+        dark: 'Dark',
+        system: 'System',
+      },
+    },
+    organisms: {
+      app_config_menu: {
+        title: 'App settings',
+      },
+    },
+  },
 };

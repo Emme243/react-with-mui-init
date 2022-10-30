@@ -7,6 +7,7 @@ import SilkaSemiBold from '../assets/fonts/silka/silka-semibold-webfont.ttf';
 import SilkaBold from '../assets/fonts/silka/silka-bold-webfont.ttf';
 import SilkaBlack from '../assets/fonts/silka/silka-black-webfont.ttf';
 import { ThemeOptions } from '@mui/material';
+import { grey } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface BreakpointOverrides {
@@ -20,12 +21,33 @@ declare module '@mui/material/styles' {
     laptop: true;
     desktop: true;
   }
+
+  interface TypographyVariants {
+    soloLabel: React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    soloLabel?: React.CSSProperties;
+  }
 }
 
-export const MUI_THEME_OPTIONS: ThemeOptions = {
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    soloLabel: true;
+  }
+}
+
+export const getMuiThemeOptions = (isDarkMode: boolean): ThemeOptions => ({
   typography: {
     fontFamily: ['Silka', 'sans-serif', 'Arial'].join(','),
     fontSize: 14,
+    soloLabel: {
+      letterSpacing: 3,
+      fontWeight: 500,
+      fontSize: 14,
+      color: isDarkMode ? grey[300] : grey[600],
+      textTransform: 'uppercase',
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -55,6 +77,7 @@ export const MUI_THEME_OPTIONS: ThemeOptions = {
     MuiToggleButtonGroup: {
       defaultProps: {
         size: 'small',
+        color: 'primary',
       },
     },
     MuiTextField: {
@@ -71,4 +94,4 @@ export const MUI_THEME_OPTIONS: ThemeOptions = {
       desktop: 1200,
     },
   },
-};
+});

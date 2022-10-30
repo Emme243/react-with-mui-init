@@ -3,6 +3,9 @@
 ## Sun 11/30/2022
 - Added i18n support. `en` and `es` are supported. Default is `en`.
 - Added language selector for the UI.
+- Added App Configuration Menu, includes:
+  - Language selector
+  - Theme selector
 
 ## Sat 11/29/2022
 - Added Mui as styling framework.

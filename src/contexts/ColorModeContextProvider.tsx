@@ -1,57 +1,57 @@
 import { createContext, useEffect, useState } from 'react';
-import { useMediaQuery } from '@mui/material';
+import { PaletteOptions, useMediaQuery } from '@mui/material';
+import { IColorMode } from '../constants/ColorModes';
 
-type IColorMode = 'light' | 'dark';
-export type IColorModeSelected = 'light' | 'dark' | 'system';
+type IMuiColorMode = PaletteOptions['mode'];
 interface IColorModeContext {
-  colorMode: IColorMode;
-  selectedColorMode: IColorModeSelected;
-  setSelectedColorMode: (selectedColorMode: IColorModeSelected) => void;
+  appColorMode: IColorMode;
+  muiColorMode: IMuiColorMode;
+  setAppColorMode: (appColorMode: IColorMode) => void;
 }
 
 export const ColorModeContext = createContext<IColorModeContext>({
-  setSelectedColorMode: () => {},
-  colorMode: 'light',
-  selectedColorMode: 'system',
+  appColorMode: 'system',
+  muiColorMode: 'light',
+  setAppColorMode: () => {},
 });
-const SELECTED_COLOR_MODE_KEY = 'selectedColorMode';
+const APP_COLOR_MODE_KEY = 'appColorMode';
 function ColorModeContextProvider({ children }: { children: React.ReactNode }) {
-  const preferredColorModeBySystem: IColorMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const preferredColorModeBySystem: IMuiColorMode = useMediaQuery('(prefers-color-scheme: dark)')
     ? 'dark'
     : 'light';
 
-  const [colorMode, setColorMode] = useState<IColorMode>(preferredColorModeBySystem);
-  const [selectedColorMode, setSelectedColorMode] = useState<IColorModeSelected>('system');
+  const [muiColorMode, setMuiColorMode] = useState<IMuiColorMode>(preferredColorModeBySystem);
+  const [appColorMode, setAppColorMode] = useState<IColorMode>('system');
 
-  function getValidSelectedColorMode(selectedColorMode: IColorModeSelected): IColorModeSelected {
-    return selectedColorMode === 'system' ||
-      selectedColorMode === 'light' ||
-      selectedColorMode === 'dark'
-      ? selectedColorMode
+  function getValidAppColorMode(appColorMode: IColorMode): IColorMode {
+    return appColorMode === 'system' || appColorMode === 'light' || appColorMode === 'dark'
+      ? appColorMode
       : 'system';
   }
 
   useEffect(() => {
-    const selectedColorModeFromLocalStorage = localStorage.getItem(SELECTED_COLOR_MODE_KEY);
-    const validSelectedColorMode = getValidSelectedColorMode(
-      selectedColorModeFromLocalStorage as IColorModeSelected,
-    );
-    setSelectedColorMode(validSelectedColorMode);
+    const appColorModeFromLocalStorage = localStorage.getItem(APP_COLOR_MODE_KEY);
+    const validAppColorMode = getValidAppColorMode(appColorModeFromLocalStorage as IColorMode);
+    setAppColorMode(validAppColorMode);
   }, []);
 
-  function onSelectedColorModeChange(selectedColorMode: IColorModeSelected): void {
-    const validSelectedColorMode = getValidSelectedColorMode(selectedColorMode);
-    setSelectedColorMode(validSelectedColorMode);
-    localStorage.setItem(SELECTED_COLOR_MODE_KEY, validSelectedColorMode);
+  function onAppColorModeChange(appColorMode: IColorMode): void {
+    const validAppColorMode = getValidAppColorMode(appColorMode);
+    setAppColorMode(validAppColorMode);
+    localStorage.setItem(APP_COLOR_MODE_KEY, validAppColorMode);
   }
 
   useEffect(() => {
-    setColorMode(selectedColorMode === 'system' ? preferredColorModeBySystem : selectedColorMode);
-  }, [preferredColorModeBySystem, selectedColorMode]);
+    setMuiColorMode(appColorMode === 'system' ? preferredColorModeBySystem : appColorMode);
+  }, [preferredColorModeBySystem, appColorMode]);
 
   return (
     <ColorModeContext.Provider
-      value={{ setSelectedColorMode: onSelectedColorModeChange, colorMode, selectedColorMode }}
+      value={{
+        appColorMode,
+        muiColorMode,
+        setAppColorMode: onAppColorModeChange,
+      }}
     >
       {children}
     </ColorModeContext.Provider>
