@@ -2,11 +2,13 @@ import { Box, Button, Container, Stack, Typography } from '@mui/material';
 import taskero_logo_full from '../assets/images/taskero_logo_full.svg';
 import not_found_light from '../assets/images/not_found_light.svg';
 import not_found_dark from '../assets/images/not_found_dark.svg';
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
 import { useContext } from 'react';
 import { ColorModeContext } from '../contexts/ColorModeContextProvider';
+import { useTranslation } from 'react-i18next';
 
 function NotFoundPage() {
+  const { t } = useTranslation();
   const { colorMode } = useContext(ColorModeContext);
   const notFoundImage = colorMode === 'dark' ? not_found_dark : not_found_light;
 
@@ -15,19 +17,19 @@ function NotFoundPage() {
       <Stack direction="column" justifyContent="start" alignItems="center">
         <img src={taskero_logo_full} alt="Taskero logo" height={50} />
         <Typography variant="h3" mt={3} fontWeight={500}>
-          Oops! Don&apos;t cry
+          {t('pages.not_found_page.dont_cry')}
         </Typography>
         <Typography variant="h5" mt={1} fontWeight={400}>
-          Something went wrong.
+          {t('pages.not_found_page.sth_went_wrong')}
         </Typography>
         <Typography variant="h6" mt={1} fontWeight={300}>
-          Error 404 - Page not found
+          {t('pages.not_found_page.title')}
         </Typography>
         <Box my={6}>
           <img src={notFoundImage} alt="Not found" height={300} />
         </Box>
-        <Button variant="contained" startIcon={<KeyboardArrowLeftOutlinedIcon />}>
-          Go back
+        <Button href="/" variant="contained" endIcon={<CottageOutlinedIcon />}>
+          {t('pages.not_found_page.go_home')}
         </Button>
       </Stack>
     </Container>

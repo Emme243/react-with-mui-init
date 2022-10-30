@@ -1,4 +1,4 @@
-import { TextField, Typography } from '@mui/material';
+import { Button, TextField, Typography } from '@mui/material';
 import ToggleColorModeButton from './components/molecules/ToggleColorModeButton';
 import taskero_logo_full from './assets/images/taskero_logo_full.svg';
 
@@ -9,6 +9,7 @@ function App() {
       <Typography variant="h1">Thin</Typography>
       <ToggleColorModeButton />
       <TextField type="text" />
+      <Button href="/not-found">Ir a not found</Button>
     </div>
   );
 }

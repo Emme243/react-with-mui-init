@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import MuiContextProvider from './contexts/MuiContextProvider';
 import ColorModeContextProvider from './contexts/ColorModeContextProvider';
 import router from './router';
+import './i18n';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
