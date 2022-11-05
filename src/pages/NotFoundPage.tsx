@@ -1,5 +1,5 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import hour_rate_full_logo from '../assets/images/hour-rate-full-logo.svg';
+import full_logo from '../assets/images/full-logo.svg';
 import not_found_light from '../assets/images/not_found_light.svg';
 import not_found_dark from '../assets/images/not_found_dark.svg';
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
@@ -15,7 +15,7 @@ function NotFoundPage() {
   return (
     <Container sx={{ paddingY: 4 }}>
       <Stack direction="column" justifyContent="start" alignItems="center">
-        <img src={hour_rate_full_logo} alt="Hour rate logo" height={50} />
+        <img src={full_logo} alt="Full logo" height={50} />
         <Typography variant="h3" mt={3} fontWeight={500}>
           {tByComponent('dont_cry')}
         </Typography>
