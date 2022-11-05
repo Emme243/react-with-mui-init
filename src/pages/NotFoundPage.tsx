@@ -1,5 +1,5 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import taskero_logo_full from '../assets/images/taskero_logo_full.svg';
+import hour_rate_full_logo from '../assets/images/hour-rate-full-logo.svg';
 import not_found_light from '../assets/images/not_found_light.svg';
 import not_found_dark from '../assets/images/not_found_dark.svg';
 import CottageOutlinedIcon from '@mui/icons-material/CottageOutlined';
@@ -15,7 +15,7 @@ function NotFoundPage() {
   return (
     <Container sx={{ paddingY: 4 }}>
       <Stack direction="column" justifyContent="start" alignItems="center">
-        <img src={taskero_logo_full} alt="Taskero logo" height={50} />
+        <img src={hour_rate_full_logo} alt="Hour rate logo" height={50} />
         <Typography variant="h3" mt={3} fontWeight={500}>
           {t('pages.not_found_page.dont_cry')}
         </Typography>
