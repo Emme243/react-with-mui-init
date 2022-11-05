@@ -4,11 +4,11 @@ import { ColorModeContext } from '../../contexts/ColorModeContextProvider';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import DevicesIcon from '@mui/icons-material/Devices';
-import { useTranslation } from 'react-i18next';
 import { COLOR_MODES, IColorMode } from '../../constants/ColorModes';
+import useLocale from '../../hooks/useLocale';
 
-function ToggleColorModeButton() {
-  const { t } = useTranslation();
+function ColorModeSwitcher() {
+  const { tByComponent } = useLocale('common.theme');
   const { setAppColorMode, appColorMode } = useContext(ColorModeContext);
 
   function handleToggleColorMode(_: MouseEvent<HTMLElement>, selectedAppColorMode: IColorMode) {
@@ -29,7 +29,7 @@ function ToggleColorModeButton() {
   return (
     <Stack direction="column">
       <Typography variant="soloLabel" mb={1}>
-        {t('components.molecules.toggle_color_mode_button.theme')}
+        {tByComponent('title')}
       </Typography>
       <ToggleButtonGroup
         exclusive
@@ -41,9 +41,7 @@ function ToggleColorModeButton() {
           <ToggleButton value={colorMode} key={colorMode}>
             <Stack direction="row" spacing={1} alignItems="center">
               {getColorModeIcon(colorMode)}
-              <Typography textTransform="capitalize">
-                {t(`components.molecules.toggle_color_mode_button.${colorMode}`)}
-              </Typography>
+              <Typography textTransform="capitalize">{tByComponent(colorMode)}</Typography>
             </Stack>
           </ToggleButton>
         ))}
@@ -52,4 +50,4 @@ function ToggleColorModeButton() {
   );
 }
 
-export default ToggleColorModeButton;
+export default ColorModeSwitcher;

@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next';
 import { Stack, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 import { MouseEvent } from 'react';
 import { LANGUAGES } from '../../constants/Languages';
+import useLocale from '../../hooks/useLocale';
 
 function LanguageSwitcher() {
-  const { t, i18n } = useTranslation();
+  const { tByComponent, i18n } = useLocale('language_switcher');
   function changeLanguage(_: MouseEvent<HTMLElement>, lng: string) {
     if (lng !== null) void i18n.changeLanguage(lng);
   }
@@ -12,7 +12,7 @@ function LanguageSwitcher() {
   return (
     <Stack direction="column">
       <Typography variant="soloLabel" mb={1}>
-        {t('components.molecules.language_switcher.language')}
+        {tByComponent('language')}
       </Typography>
       <ToggleButtonGroup
         exclusive

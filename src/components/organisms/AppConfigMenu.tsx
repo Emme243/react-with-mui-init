@@ -1,12 +1,12 @@
 import LanguageSwitcher from '../molecules/LanguageSwitcher';
-import ToggleColorModeButton from '../molecules/ToggleColorModeButton';
+import ColorModeSwitcher from '../molecules/ColorModeSwitcher';
 import { Box, Divider, IconButton, Menu, Stack, Tooltip, Typography } from '@mui/material';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import { useState, MouseEvent } from 'react';
-import { useTranslation } from 'react-i18next';
+import useLocale from '../../hooks/useLocale';
 
 function AppConfigMenu() {
-  const { t } = useTranslation();
+  const { tByComponent } = useLocale('app_config_menu');
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -18,7 +18,7 @@ function AppConfigMenu() {
 
   return (
     <div>
-      <Tooltip title={t('components.organisms.app_config_menu.title')} placement="bottom">
+      <Tooltip title={tByComponent('title')} placement="bottom">
         <IconButton color="primary" size="large" onClick={handleClick}>
           <SettingsOutlinedIcon />
         </IconButton>
@@ -46,14 +46,14 @@ function AppConfigMenu() {
         >
           <Box px={3} pt={1}>
             <Typography variant="h6" textTransform="uppercase">
-              {t('components.organisms.app_config_menu.title')}
+              {tByComponent('title')}
             </Typography>
           </Box>
           <Box px={3} pb={1}>
             <LanguageSwitcher />
           </Box>
           <Box px={3} pb={2}>
-            <ToggleColorModeButton />
+            <ColorModeSwitcher />
           </Box>
         </Stack>
       </Menu>
